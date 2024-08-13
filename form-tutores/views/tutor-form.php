@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
+ <?php/*
     // Configuración de la conexión
     $host = "localhost";
     $user = "root";
@@ -25,7 +25,9 @@
     echo "Conexión exitosa";
 
     // Cerrar la conexión
-    mysqli_close($enlace);
+    mysqli_close($enlace);*/
     ?>
+
+    <h1>fsdkjfs</h1>
 </body>
 </html>
