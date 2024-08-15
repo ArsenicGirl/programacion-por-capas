@@ -1,7 +1,10 @@
 <?php
 require_once('Database.php');
+require_once('TutorDTO.php');
 
-class TutorDAO {
+
+class TutorDAO extends Database{
+    
     public static function CreateTutor($name, $phone, $is_director) {
         $database = Database::getInstance();
         $conn = $database->getPDO();
