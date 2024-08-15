@@ -7,9 +7,14 @@ TutorDTO{
     private $phone;
     private $is_director;//recordar que es boobleano
 
-    public function __Construct(){
-
+    public function __Construct($id, $name, $phone, $is_director){
+        $this->id = $id;
+        $this->name = $name;
+        $this->phone = $phone;
+        $this->is_director = $is_director;
     }
+
+    //Getters y Setters del id
     public function getId() {
         return $this->id;
     }

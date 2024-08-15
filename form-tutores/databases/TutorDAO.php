@@ -5,7 +5,44 @@ require_once('TutorDTO.php');
 
 class TutorDAO extends Database{
     
-    public static function CreateTutor($name, $phone, $is_director) {
+    public function readTutor() {
+        
+        $sql = "SELECT id, name, phone, is_director FROM tutor";
+
+        $stmt = ConexionBD::getInstance()->getPdo()->prepare($sql);
+        $stmt->execute();
+
+        $tutor = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $tutor[] = new TutorDTO(
+                $row['id'],
+                $row['name'],
+                $row['phone'],
+                $row['is_director']
+            );
+
+            return $tutores;
+        }
+
+    }
+
+    public function readById(){
+
+    }
+    public function createTutor(){
+
+    }
+    public function updateTutor(){
+
+    }
+    public function deleteTutor(){
+
+    }
+
+
+
+
+    /*public static function CreateTutor($name, $phone, $is_director) {
         $database = Database::getInstance();
         $conn = $database->getPDO();
 
@@ -34,6 +71,6 @@ class TutorDAO extends Database{
         } else {
             header('HTTP/1.1 404 No se encontraron tutores');
         }
-    }
+    }*/
 }
 ?>
