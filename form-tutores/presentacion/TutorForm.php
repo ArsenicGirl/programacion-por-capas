@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../logica/AccionesForm.php"></script>
     <title>Document</title>
 </head>
 <body>
@@ -12,8 +13,8 @@
     <!-- Formulario para crear y actualizar -->
      <div class="contenedor-formularios">
         <div class="contenedor-post">
-            <form action="#" method="post">
-                <input type="hidden" name="id" value="">
+            <form action="TutorForm.php" method="post">
+                <input type="hidden" name="id" value=""> <!-- Este campo se debe rellenar solo cuando se actualice -->
                 
                 <label for="name">Nombre del tutor</label>
                 <input type="text" name="name" id="name" required><br>
@@ -31,7 +32,7 @@
         </div>
 
         <div class="contenedor-delete">
-            <form action="#" method="post">
+            <form action="TutorForm.php" method="post">
                 <label for="delete_id">ID del tutor a Eliminar:</label>
                 <input type="number" name="delete_id" id="delete_id" required>
 
@@ -55,7 +56,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php include '../logic/AccionesForm.php'; ?>
+                <?php include '../logica/AccionesForm.php'; ?>
             </tbody>
         </table>
  

@@ -1,10 +1,10 @@
 <?php
-require_once('../databases/TutorDAO.php');
-require_once('../databases/TutorDTO.php');
+require_once('../persistencia/TutorDAO.php');
+require_once('../persistencia/TutorDTO.php');
 class TutorLogic{
     private $tutorDAO;
 
-    public function __contruct(){
+    public function __construct(){
         $this->tutorDAO = new TutorDAO();
 
     }
