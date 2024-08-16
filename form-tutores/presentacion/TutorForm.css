@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.contenedor-formularios {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1{
+    text-align: center;
+    background-color: rgb(248, 218, 255);
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.contenedor-formularios{
+    padding: 50px;
+}
+
+.contenedor-post{
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 3px 5px 17px 5px rgba(0, 0, 0, 0.178);
+}
+
+label{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+input{
+    margin-bottom: 19px;
+    padding: 10px 40% 0 0;
+    font-size: 22px;
+}
+
+.button-group {
+    display: flex; 
+    gap: 10px;
+    margin-top: 10px; 
+    padding-left: 30%;
+}
+
+.button-group button {
+    padding: 10px 20px; 
+    border: 1px solid #ccc; 
+    background-color: #f4f4f4; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    transition: background-color 0.3s; 
+    font-size: 20px;
+}
+
+.button-group button:hover {
+    background-color: #ddd;
+}
+
+.contenedor-delete{
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 3px 5px 17px 5px rgba(0, 0, 0, 0.178);
+    margin-top: 10%;
+}
+
+.button-delete {
+    padding: 10px 20px; 
+    border: 1px solid #ccc; 
+    background-color: #f4f4f4; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    transition: background-color 0.3s; 
+    font-size: 20px;
+    margin-left: 40%;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+th {
+    background-color: #f4f4f4;
+}
+form {
+    margin-bottom: 20px;
+}
