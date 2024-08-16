@@ -2,20 +2,22 @@
 require_once('Database.php');
 require_once('TutorDTO.php');
 
+class TutorDAO extends Database {
 
-class TutorDAO extends Database{
-    
+    public function __construct() {
+        $this->pdo = Database::getInstance()->getPDO();
+    }
+
+
     //Leer todos lso tutores
     public function readTutor() {
-        
         $sql = "SELECT id, name, phone, is_director FROM tutor";
-
-        $stmt = $this->getPDO()->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
-        $tutor = [];
+        $tutors = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $tutor[] = new TutorDTO(
+            $tutors[] = new TutorDTO(
                 $row['id'],
                 $row['name'],
                 $row['phone'],
@@ -23,18 +25,17 @@ class TutorDAO extends Database{
             );
         }
 
-        return $tutores;
-
+        return $tutors;
     }
 
-    public function readById($id){
+    public function readById($id) {
         $sql = "SELECT id, name, phone, is_director FROM tutor WHERE id = :id";
-        $stmt = $this->getPDO()->prepare($sql);
-        $stmt->bindParam(':id', PDO::PARAM_INT);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($row){
+        if ($row) {
             return new TutorDTO(
                 $row['id'],
                 $row['name'],
@@ -44,35 +45,33 @@ class TutorDAO extends Database{
         } else {
             return null;
         }
-
     }
-    public function createTutor(TutorDTO $tutorDTO){
+
+    public function createTutor(TutorDTO $tutorDTO) {
         $sql = "INSERT INTO tutor (name, phone, is_director) VALUES (:name, :phone, :is_director)";
-        $stmt = $this->getPDO()->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':name', $tutorDTO->getName());
         $stmt->bindParam(':phone', $tutorDTO->getPhone());
-        $stmt->bindParam('is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
+        $stmt->bindParam(':is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
         $stmt->execute();
     }
-    public function updateTutor(TutorDTO $tutorDTO){
+
+    public function updateTutor(TutorDTO $tutorDTO) {
         $sql = "UPDATE tutor SET name = :name, phone = :phone, is_director = :is_director WHERE id = :id";
-        $stmt = $this->getPDO()->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $tutorDTO->getId(), PDO::PARAM_INT);
         $stmt->bindParam(':name', $tutorDTO->getName());
         $stmt->bindParam(':phone', $tutorDTO->getPhone());
         $stmt->bindParam(':is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
         $stmt->execute();
     }
-    public function deleteTutor($id){
+
+    public function deleteTutor($id) {
         $sql = "DELETE FROM tutor WHERE id = :id";
-        $stmt = $this->getPDO()->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
-
-
-
-
     /*public static function CreateTutor($name, $phone, $is_director) {
         $database = Database::getInstance();
         $conn = $database->getPDO();

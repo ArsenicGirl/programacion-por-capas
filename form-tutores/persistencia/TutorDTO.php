@@ -1,20 +1,19 @@
+<?php
 //Es el DTO
-
-<?
-TutorDTO{
+class TutorDTO {
     private $id;
     private $name;
     private $phone;
-    private $is_director;//recordar que es boobleano
+    private $is_director;
 
-    public function __Construct($id, $name, $phone, $is_director){
+    public function __construct($id, $name, $phone, $is_director) {
         $this->id = $id;
         $this->name = $name;
         $this->phone = $phone;
         $this->is_director = $is_director;
     }
 
-    //Getters y Setters del id
+    // Getters y Setter para el id
     public function getId() {
         return $this->id;
     }
@@ -23,7 +22,7 @@ TutorDTO{
         $this->id = $id;
     }
 
-    // Getters y setters para name
+    // Getters y Setter para  el nombre
     public function getName() {
         return $this->name;
     }
@@ -32,7 +31,7 @@ TutorDTO{
         $this->name = $name;
     }
 
-    // Getters y setters para phone
+    //Getters y Setter para el teléfono
     public function getPhone() {
         return $this->phone;
     }
@@ -41,7 +40,7 @@ TutorDTO{
         $this->phone = $phone;
     }
 
-    // Getters y setters para is_director
+    //Getters y Setter para is_director
     public function getIsDirector() {
         return $this->is_director;
     }

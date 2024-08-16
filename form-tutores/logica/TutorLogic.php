@@ -1,6 +1,6 @@
 <?php
-require_once('TutorDAO.php');
-require_once('TutorDTO.php');
+require_once('../databases/TutorDAO.php');
+require_once('../databases/TutorDTO.php');
 class TutorLogic{
     private $tutorDAO;
 

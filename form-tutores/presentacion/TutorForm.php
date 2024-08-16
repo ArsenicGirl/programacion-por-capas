@@ -32,7 +32,7 @@
 
         <div class="contenedor-delete">
             <form action="#" method="post">
-                <label for="delete_id">ID del Cliente a Eliminar:</label>
+                <label for="delete_id">ID del tutor a Eliminar:</label>
                 <input type="number" name="delete_id" id="delete_id" required>
 
                 <button type="submit" name="action" value="delete">Eliminar</button>
@@ -55,7 +55,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php include '#'; ?>
+                <?php include '../logic/AccionesForm.php'; ?>
             </tbody>
         </table>
  
