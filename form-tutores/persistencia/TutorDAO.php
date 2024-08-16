@@ -50,19 +50,33 @@ class TutorDAO extends Database {
     public function createTutor(TutorDTO $tutorDTO) {
         $sql = "INSERT INTO tutor (name, phone, is_director) VALUES (:name, :phone, :is_director)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':name', $tutorDTO->getName());
-        $stmt->bindParam(':phone', $tutorDTO->getPhone());
-        $stmt->bindParam(':is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
+        
+        // Definir variables temporales
+        $name = $tutorDTO->getName();
+        $phone = $tutorDTO->getPhone();
+        $is_director = $tutorDTO->getIsDirector();
+
+        // Pasar las variables temporales a bindParam (aqui no acepta valores directos sino que solo acepta variables)
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':is_director', $is_director, PDO::PARAM_BOOL);
         $stmt->execute();
     }
 
     public function updateTutor(TutorDTO $tutorDTO) {
         $sql = "UPDATE tutor SET name = :name, phone = :phone, is_director = :is_director WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $tutorDTO->getId(), PDO::PARAM_INT);
-        $stmt->bindParam(':name', $tutorDTO->getName());
-        $stmt->bindParam(':phone', $tutorDTO->getPhone());
-        $stmt->bindParam(':is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
+        
+        //igual variables temporales
+        $id = $tutorDTO->getId();
+        $name = $tutorDTO->getName();
+        $phone = $tutorDTO->getPhone();
+        $is_director = $tutorDTO->getIsDirector();
+    
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':is_director', $is_director, PDO::PARAM_BOOL);
         $stmt->execute();
     }
 
