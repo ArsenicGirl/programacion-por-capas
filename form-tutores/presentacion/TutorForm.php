@@ -14,8 +14,8 @@
      <div class="contenedor-formularios">
         <div class="contenedor-post">
             <form action="TutorForm.php" method="post">
-                <input type="hidden" name="id" value=""> <!-- Este campo se debe rellenar solo cuando se actualice -->
-                
+                <input type="hidden" name="id" id="id" value=""> <!-- Este campo se debe rellenar solo cuando se actualice -->
+
                 <label for="name">Nombre del tutor</label>
                 <input type="text" name="name" id="name" required><br>
 
@@ -27,7 +27,6 @@
 
                 <button type="submit" name="action" value="create">Crear tutor</button><br>
                 <button type="submit" name="action" value="update">Actualizar tutor</button>
-
             </form>
         </div>
 
