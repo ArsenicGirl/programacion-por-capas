@@ -5,11 +5,12 @@ require_once('TutorDTO.php');
 
 class TutorDAO extends Database{
     
+    //Leer todos lso tutores
     public function readTutor() {
         
         $sql = "SELECT id, name, phone, is_director FROM tutor";
 
-        $stmt = ConexionBD::getInstance()->getPdo()->prepare($sql);
+        $stmt = $this->getPDO()->prepare($sql);
         $stmt->execute();
 
         $tutor = [];
@@ -18,25 +19,55 @@ class TutorDAO extends Database{
                 $row['id'],
                 $row['name'],
                 $row['phone'],
-                $row['is_director']
+                (bool)$row['is_director']
             );
+        }
 
-            return $tutores;
+        return $tutores;
+
+    }
+
+    public function readById($id){
+        $sql = "SELECT id, name, phone, is_director FROM tutor WHERE id = :id";
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindParam(':id', PDO::PARAM_INT);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row){
+            return new TutorDTO(
+                $row['id'],
+                $row['name'],
+                $row['phone'],
+                (bool)$row['is_director']
+            );
+        } else {
+            return null;
         }
 
     }
-
-    public function readById(){
-
+    public function createTutor(TutorDTO $tutorDTO){
+        $sql = "INSERT INTO tutor (name, phone, is_director) VALUES (:name, :phone, :is_director)";
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindParam(':name', $tutorDTO->getName());
+        $stmt->bindParam(':phone', $tutorDTO->getPhone());
+        $stmt->bindParam('is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
+        $stmt->execute();
     }
-    public function createTutor(){
-
+    public function updateTutor(TutorDTO $tutorDTO){
+        $sql = "UPDATE tutor SET name = :name, phone = :phone, is_director = :is_director WHERE id = :id";
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindParam(':id', $tutorDTO->getId(), PDO::PARAM_INT);
+        $stmt->bindParam(':name', $tutorDTO->getName());
+        $stmt->bindParam(':phone', $tutorDTO->getPhone());
+        $stmt->bindParam(':is_director', $tutorDTO->getIsDirector(), PDO::PARAM_BOOL);
+        $stmt->execute();
     }
-    public function updateTutor(){
-
-    }
-    public function deleteTutor(){
-
+    public function deleteTutor($id){
+        $sql = "DELETE FROM tutor WHERE id = :id";
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
 
